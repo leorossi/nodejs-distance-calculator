@@ -15,7 +15,7 @@ describe('Coordinates Calculator', () => {
         return done(new Error('Geocoder should not be called'))
       }
     }
-    const calculator = new CoordinatesCalculator({ Geocoder: geocoder });
+    const calculator = new CoordinatesCalculator({ geocoder: geocoder });
     calculator.get({
       longitude: 123,
       latitude: 456
@@ -39,7 +39,7 @@ describe('Coordinates Calculator', () => {
         
       }
     }
-    const calculator = new CoordinatesCalculator({ Geocoder: geocoder });
+    const calculator = new CoordinatesCalculator({ geocoder: geocoder });
     calculator.get({
       address: 'An Address'
     })
@@ -58,7 +58,7 @@ describe('Coordinates Calculator', () => {
         
       }
     }
-    const calculator = new CoordinatesCalculator({ Geocoder: geocoder });
+    const calculator = new CoordinatesCalculator({ geocoder: geocoder });
     calculator.get({
       name: 'A name'
     })
@@ -76,7 +76,7 @@ describe('Coordinates Calculator', () => {
         });  
       }
     }
-    const calculator = new CoordinatesCalculator({ Geocoder: geocoder });
+    const calculator = new CoordinatesCalculator({ geocoder: geocoder });
     calculator.get({
       name: 'A name',
       address: 'An Address'
