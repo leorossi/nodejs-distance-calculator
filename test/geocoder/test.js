@@ -1,8 +1,14 @@
 'use strict';
 
 const expect = require('chai').expect;
-const Geocoder = require('../../lib/geocoder');
+const mockConfig = function(value) {
+  if (value === 'GOOGLE_GEOCODE_API_KEY') {
+    return process.env['GOOGLE_GEOCODE_API_KEY'];
+  }
+};
+const GeocoderClass = require('../../lib/geocoder');
 
+const Geocoder = new GeocoderClass({ config: mockConfig });
 describe('Geocoder', () => {
   
   it('should translate a location name', function(done) {
@@ -34,11 +40,15 @@ describe('Geocoder', () => {
       });
   });
 
-  it('should throw exception if no GOOGLE_GEOCODE_API_KEY is set in environment', function(done) {
-    delete require.cache[require.resolve('../../lib/geocoder')]
-    delete process.env['GOOGLE_GEOCODE_API_KEY'];
+  it('should throw exception if no GOOGLE_GEOCODE_API_KEY is set', function(done) {
+    const mockConfig = function (value) {
+      if (value === 'GOOGLE_GEOCODE_API_KEY') {
+        return null;
+      }
+    };
+    
     expect(function() {
-      const BadGeocoder = require('../../lib/geocoder');
+      const BadGeocoder = new GeocoderClass({ config: mockConfig });
     }).to.throw();
     done();
     

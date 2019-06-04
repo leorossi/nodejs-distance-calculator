@@ -15,7 +15,7 @@ describe('Coordinates Calculator', () => {
         return done(new Error('Geocoder should not be called'))
       }
     }
-    const calculator = new CoordinatesCalculator(geocoder);
+    const calculator = new CoordinatesCalculator({ Geocoder: geocoder });
     calculator.get({
       longitude: 123,
       latitude: 456
@@ -39,7 +39,7 @@ describe('Coordinates Calculator', () => {
         
       }
     }
-    const calculator = new CoordinatesCalculator(geocoder);
+    const calculator = new CoordinatesCalculator({ Geocoder: geocoder });
     calculator.get({
       address: 'An Address'
     })
@@ -58,7 +58,7 @@ describe('Coordinates Calculator', () => {
         
       }
     }
-    const calculator = new CoordinatesCalculator(geocoder);
+    const calculator = new CoordinatesCalculator({ Geocoder: geocoder });
     calculator.get({
       name: 'A name'
     })
@@ -73,11 +73,10 @@ describe('Coordinates Calculator', () => {
         return new Promise((resolve, reject) => {
           expect(name).to.be.equal('An Address');
           done();
-        });
-        
+        });  
       }
     }
-    const calculator = new CoordinatesCalculator(geocoder);
+    const calculator = new CoordinatesCalculator({ Geocoder: geocoder });
     calculator.get({
       name: 'A name',
       address: 'An Address'
