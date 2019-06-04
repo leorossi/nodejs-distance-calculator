@@ -4,3 +4,4 @@ require('dotenv').config({
 });
 require('./geocoder/test');
 require('./coordinates_calculator/test');
+require('./distance_matrix_calculator/test');
